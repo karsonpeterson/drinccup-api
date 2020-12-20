@@ -3,10 +3,13 @@ const bodyParser = require('body-parser');
 const ws = require('ws');
 var DB = require('./db/db-connect');
 
+var roomRouter = require('./routes/rooms');
+
 var port = process.env.PORT || 3000;
 
 const app = express();
-app.set('DB', DB);
+
+app.use('/room', roomRouter);
 
 app.use(bodyParser.urlencoded({
     extended: true
